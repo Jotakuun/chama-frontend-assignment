@@ -43,12 +43,3 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-/* app */
-html, body {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-	background-color: #E6F1F5;
-	font-family: 'Roboto', sans-serif;
-}

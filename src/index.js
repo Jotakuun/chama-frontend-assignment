@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './assets/styles/index.css';
+import './assets/styles/reset.css';
+import './assets/styles/main.scss';
 import { Auth, PrivateRoute } from './components/Auth'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';

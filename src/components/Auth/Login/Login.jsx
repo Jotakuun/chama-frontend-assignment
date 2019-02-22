@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
+import styles from './Login.module.scss';
+//import Input from '@material-ui/core/Input';
 
-const Login = () =>  {
-	return <h1>Login</h1>
+class Login extends Component {
+	constructor() {
+		super();
+		this.state = {
+			email: '',
+			password: ''
+		}
+	}
+	render() {
+		return (
+			<div className={styles.Login}>
+			</div>
+		)
+	}
 }
 
 export default Login;
