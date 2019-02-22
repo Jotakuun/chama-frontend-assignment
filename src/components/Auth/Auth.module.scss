@@ -4,7 +4,7 @@
 	display: flex;
 	margin: 20px;
 	max-width: 1280px;
-	width: 100%;
+	width: 85%;
 
 	&__Container {
 		display: flex;
@@ -15,12 +15,12 @@
 
 @include tablet{
 	.Auth {
-		width: 80%;
+		width: 60%;
 	}
 }
 
 @include desktop{
 	.Auth {
-		width: 50%;
+		width: 40%;
 	}
 }

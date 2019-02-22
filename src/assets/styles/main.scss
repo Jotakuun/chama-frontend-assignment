@@ -7,8 +7,22 @@ html, body {
     margin: 0;
 	background-color: $body-background-color;
 	font-family: 'Roboto', sans-serif;
+	color: $text-color;
 }
 
 #root {
 	height: 100%;
+}
+
+h1 {
+	font-size: 1.8rem;
+}
+h2 {
+	font-size: 1.4rem;
+}
+h3 {
+	font-size: 1rem;
+}
+h4 {
+	font-size: 0.8rem;
 }
