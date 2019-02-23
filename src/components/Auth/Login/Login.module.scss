@@ -25,4 +25,26 @@
 	&__Inputs {
 		width: 100%;
 	}
+
+	&__Submit {
+		margin: 20px 0;
+	}
+
+	&__Footer {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		font-size: 0.9rem;
+
+		text-align: center;
+		span {
+			display: inline-block;
+			font-weight: bold;
+			color: $sec-text-color;
+			padding: 10px 0;
+			a {
+				color: $primary-color;
+			}
+		}
+	}
 }
