@@ -95,7 +95,7 @@ export class Login extends Component {
 					</div>
 				</form>
 				<div className={styles.Login__Footer}>
-					<span>New user? <Link to="/register">Signup</Link></span>
+					<span>New user? <Link to="/signup">Signup</Link></span>
 				</div>
 			</section>
 		)
