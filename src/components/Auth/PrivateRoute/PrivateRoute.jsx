@@ -8,7 +8,7 @@ class PrivateRoute extends Component {
 			<Route render={(props) => (
 				this.props && this.props.user
 					? <Component {...props} />
-					: <Redirect to='/auth' />
+					: <Redirect to='/login' />
 			)} />
 		)
 	}

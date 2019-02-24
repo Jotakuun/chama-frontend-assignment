@@ -1,19 +1,12 @@
 import { call, put } from 'redux-saga/effects';
 import { actionsTypes } from './user.actions';
-
-function fetchUser(email) {
-	return 'ok';
-}
+import { FirebaseAPI } from '../../firebase-api';
 
 export function* login(action) {
 	try {
-	   const user = yield call(fetchUser, action.payload.email);
+	   const user = yield call(FirebaseAPI.login, action.payload);
 	   yield put({type: actionsTypes.LOGIN_SUCCESS, user: user});
 	} catch (e) {
 	   yield put({type: actionsTypes.LOGIN_FAILURE, message: e.message});
 	}
- }
-
- export const userEffects = {
-	 login: (action) => login(action) 
  }
