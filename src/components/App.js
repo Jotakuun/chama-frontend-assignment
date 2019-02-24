@@ -8,8 +8,9 @@ import merge from 'lodash/merge'
 import { FirebaseDB } from '../firebase/firebase';
 import { FirebaseAPI } from '../firebase/firebase-api';
 
-export class App extends Component {
+import Task from './Task/Task';
 
+export class App extends Component {
   componentWillMount() {
     if (!this.props.user) {
       FirebaseAPI.getCurrentUser().then((user) => {
@@ -32,10 +33,14 @@ export class App extends Component {
     return (
       <div className="App">
         Hello world!
+        {this.props.tasks && this.props.tasks.all.map((task) => {
+          return <Task key={task.id} {...task}/>
+        })}
       </div>
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   ...state.user,
   ...state.tasks
