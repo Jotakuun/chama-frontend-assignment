@@ -5,7 +5,7 @@ import './assets/styles/main.scss';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import configureStore from './store';
-import './firebase';
+import './firebase/firebase';
 
 import App from './components/App';
 import { RouteWithAuthentication, Login, SignUp } from './components/Auth';

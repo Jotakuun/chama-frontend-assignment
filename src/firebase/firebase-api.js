@@ -1,4 +1,3 @@
-import './utils/http';
 import firebase from './firebase';
 
 function login({ email, password }) {
@@ -28,7 +27,6 @@ function loginAnonymously() {
 function getCurrentUser() {
 	return new Promise((resolve, reject) => {
 		firebase.auth().onAuthStateChanged((user) => {
-			console.log('user', user)
 			if (user) {
 				resolve(user);
 			} else reject();

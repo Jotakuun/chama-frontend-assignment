@@ -12,6 +12,7 @@ const config = {
     messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID
 };
 
-firebase.initializeApp(config)
+const app = firebase.initializeApp(config)
 
+export const FirebaseDB = app.database().ref().child('tasks');
 export default firebase;

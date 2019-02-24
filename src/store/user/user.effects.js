@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { actionsTypes } from './user.actions';
-import { FirebaseAPI } from '../../firebase-api';
+import { FirebaseAPI } from '../../firebase/firebase-api';
 import { PersistentAuth } from '../../components/Auth/persistent-auth';
 
 export function* login(action) {
