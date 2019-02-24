@@ -3,7 +3,6 @@ import styles from './SignUp.module.scss';
 import { connect } from 'react-redux';
 import { actions as userActions } from '../../../store/user/user.actions';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core';
 
 export class SignUp extends Component {
@@ -18,6 +17,12 @@ export class SignUp extends Component {
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
+	}
+
+	componentDidUpdate() {
+		if (this.props.user) {
+			this.props.history.push('/')
+		}
 	}
 
 	validateForm() {
@@ -37,7 +42,7 @@ export class SignUp extends Component {
 		const { email } = this.state;
 
 		if (email && !errors.email && !errors.password) {
-			this.props.login(email.value, this.passwordRef.value)
+			this.props.signup(email, this.passwordRef.value)
 		}
 	}
 
@@ -89,7 +94,6 @@ export class SignUp extends Component {
 				<div className={styles.Signup__Footer}>
 					<span>Already registered? <Link to="/login">Login</Link></span>
 				</div>
-				{this.props.user && <Redirect to="/" />}
 			</section>
 		)
 	}

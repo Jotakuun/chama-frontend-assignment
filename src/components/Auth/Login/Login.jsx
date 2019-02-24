@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Login.module.scss';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { actions as userActions } from '../../../store/user/user.actions';
 import { Link } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core';
@@ -18,6 +17,12 @@ export class Login extends Component {
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
+	}
+
+	componentDidUpdate() {
+		if (this.props.user) {
+			this.props.history.push('/')
+		}
 	}
 
 	validateForm() {
@@ -37,8 +42,13 @@ export class Login extends Component {
 		const { email } = this.state;
 
 		if (email && !errors.email && !errors.password) {
-			this.props.login(email.value, this.passwordRef.value)
+			this.props.login(email, this.passwordRef.value)
 		}
+	}
+
+	loginAnonymously(event) {
+		this.props.loginAnonymously();
+		event.preventDefault();
 	}
 
 	render() {
@@ -88,8 +98,8 @@ export class Login extends Component {
 				</form>
 				<div className={styles.Login__Footer}>
 					<span>New user? <Link to="/signup">Signup</Link></span>
+					<span>or <a href="/" onClick={(event) => this.loginAnonymously(event)}>Login anonymously</a></span> 
 				</div>
-				{this.props.user && <Redirect to="/" />}
 			</section>
 		)
 	}
@@ -100,7 +110,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	login: (email, password) => dispatch(userActions.login(email, password))
+	login: (email, password) => dispatch(userActions.login(email, password)),
+	loginAnonymously: () => dispatch(userActions.loginAnonymously())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

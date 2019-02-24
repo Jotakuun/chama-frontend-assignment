@@ -1,32 +1,70 @@
 import './utils/http';
 import firebase from './firebase';
 
-async function login(email, password) {
-	try {
-		return await firebase.auth().signInWithEmailAndPassword(email, password);
-	} catch(err) {
-		return err;
-	}
+function login({ email, password }) {
+	return new Promise((resolve, reject) => {
+		firebase.auth().signInWithEmailAndPassword(email, password)
+			.then((res) => {
+				resolve(res);
+			})
+			.catch((error) => {
+				reject(error);
+			})
+	});
 }
 
-async function signup(email, password) {
-	try {
-		return await firebase.auth().createUserWithEmailAndPassword(email, password);
-	} catch(err) {
-		return err;
-	}
+function loginAnonymously() {
+	return new Promise((resolve, reject) => {
+		firebase.auth().signInAnonymously()
+			.then((res) => {
+				resolve(res);
+			})
+			.catch((error) => {
+				reject(error);
+			})
+	});
 }
 
-async function signout() {
-	try {
-		return await firebase.auth().signOut();
-	} catch(err) {
-		return err;
-	}
+function getCurrentUser() {
+	return new Promise((resolve, reject) => {
+		firebase.auth().onAuthStateChanged((user) => {
+			console.log('user', user)
+			if (user) {
+				resolve(user);
+			} else reject();
+		});
+	});
+} 
+
+function signup({ email, password }) {
+	return new Promise((resolve, reject) => {
+		firebase.auth().createUserWithEmailAndPassword(email, password)
+			.then((res) => {
+				resolve(res);
+			})
+			.catch((error) => {
+				reject(error);
+			})
+
+	});
+}
+
+function signout() {
+	return new Promise((resolve, reject) => {
+		firebase.auth().signOut()
+			.then((res) => {
+				resolve(res);
+			})
+			.catch((error) => {
+				reject(error);
+			})
+	});
 }
 
 export const FirebaseAPI = {
 	login: (email, password) => login(email, password),
+	loginAnonymously: () => loginAnonymously(),
+	getCurrentUser: () => getCurrentUser(),
 	signup: (email, password) => signup(email, password),
 	signout: (data) => signout(data)
 };

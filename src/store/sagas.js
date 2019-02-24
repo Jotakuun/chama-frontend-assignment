@@ -1,9 +1,15 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, all } from 'redux-saga/effects';
+
 import { actionsTypes as userActions } from './user/user.actions';
 import * as userEffects from './user/user.effects';
 
-export default function* rootSaga() {
-	yield [
+function* rootSaga() {
+	yield all([
 		takeEvery(userActions.LOGIN, userEffects.login),
-	]
+		takeEvery(userActions.LOGIN_ANONYMOUSLY, userEffects.loginAnonymously),
+		takeEvery(userActions.SIGNUP, userEffects.signup),
+		takeEvery(userActions.LOGOUT, userEffects.logout),
+	])
 }
+
+export default rootSaga;

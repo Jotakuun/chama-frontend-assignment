@@ -10,8 +10,10 @@ export default (state = userInitialState, action) => {
 	switch (action.type) {
 		case actionsTypes.SIGNUP:
 		case actionsTypes.LOGIN:
+		case actionsTypes.LOGIN_ANONYMOUSLY:
 			return { ...state, isLoading: true, error: null }
 
+		case actionsTypes.INITIALIZE_WITH_USER:
 		case actionsTypes.SIGNUP_SUCCESS:
 		case actionsTypes.LOGIN_SUCCESS:
 			return { ...state, isLoading: false, user: action.user }

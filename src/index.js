@@ -8,7 +8,7 @@ import configureStore from './store';
 import './firebase';
 
 import App from './components/App';
-import { PrivateRoute, Login, SignUp } from './components/Auth';
+import { RouteWithAuthentication, Login, SignUp } from './components/Auth';
 import { Layout } from './components/shared';
 
 const Routes = () => {
@@ -19,7 +19,7 @@ const Routes = () => {
 					<Switch>
 						<Route path="/login" component={Login} />
 						<Route path="/signup" component={SignUp} />
-						<PrivateRoute path="/" component={App} />
+						<RouteWithAuthentication path="/" component={App} />
 					</Switch>
 				</Layout>
 			</BrowserRouter>

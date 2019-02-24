@@ -1,5 +1,5 @@
 import SignUp from './SignUp/SignUp';
 import Login from './Login/Login';
-import PrivateRoute from './PrivateRoute/PrivateRoute';
+import RouteWithAuthentication from './RouteWithAuthentication/RouteWithAuthentication';
 
-export { PrivateRoute, SignUp, Login };
+export { RouteWithAuthentication, SignUp, Login };
