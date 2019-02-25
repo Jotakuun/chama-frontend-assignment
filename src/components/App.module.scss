@@ -1,4 +1,18 @@
+.App {
+	width: 100%;
+}
+
 .CreateTask {
 	display: flex;
 	flex-flow: row nowrap;
+	width: 100%;
+	padding: 20px 0;
+	&__TextField {
+		display: flex;
+		flex: 1;
+		margin-right: 20px;
+	}
+	&__Button {
+		min-width: 200px;
+	}
 }
