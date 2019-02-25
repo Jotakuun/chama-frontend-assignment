@@ -1,14 +1,23 @@
 
 export const actionsTypes = {
 	CREATE_TASK: 'TASKS/CREATE_TASK',
+	CREATE_TASK_SUCCESS: 'TASKS/CREATE_TASK_SUCCESS',
+	CREATE_TASK_FAILURE: 'TASKS/CREATE_TASK_FAILURE',
 	UPDATE_TASK: 'TASKS/UPDATE_TASK',
+	UPDATE_TASK_SUCCESS: 'TASKS/UPDATE_TASK_SUCCESS',
+	UPDATE_TASK_FAILURE: 'TASKS/UPDATE_TASK_FAILURE',
 	REMOVE_TASK: 'TASKS/REMOVE_TASK',
-	INITIALIZE_TASKS: 'TASKS/INITIALIZE_TASKS'
+	REMOVE_TASK_SUCCESS: 'TASKS/REMOVE_TASK_SUCCESS',
+	REMOVE_TASK_FAILURE: 'TASKS/REMOVE_TASK_FAILURE',
+	INITIALIZE_TASKS: 'TASKS/INITIALIZE_TASKS',
+	INITIALIZE_TASKS_SUCCESS: 'TASKS/INITIALIZE_TASKS_SUCCESS',
+	INITIALIZE_TASKS_FAILURE: 'TASKS/INITIALIZE_TASKS_FAILURE'
+
 }
 
 export const actions = {
 	removeTask: (taskId) => ({ type: actionsTypes.REMOVE_TASK, payload: taskId }),
 	createTask: (task) => ({ type: actionsTypes.CREATE_TASK, payload: task }),
 	updateTask: (task) => ({ type: actionsTypes.UPDATE_TASK, payload: task }),
-	initializeTasks: (tasks) => ({ type: actionsTypes.INITIALIZE_TASKS, payload: tasks }),
+	initializeTasks: () => ({ type: actionsTypes.INITIALIZE_TASKS }),
 }
