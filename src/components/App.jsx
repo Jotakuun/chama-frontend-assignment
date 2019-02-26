@@ -29,9 +29,9 @@ export class App extends Component {
   createTask() {
     const { newTask } = this.state;
     if (newTask !== '') {
-      const defaultTime = new Date();
-      defaultTime.setMinutes(defaultTime.getMinutes() + 30);
-      defaultTime.toISOString();
+      let defaultTime = new Date();
+      defaultTime = defaultTime.setMinutes(defaultTime.getMinutes() + 30);
+      // defaultTime = defaultTime.toISOString();
 
       this.props.createTask({
         text: newTask,
@@ -51,7 +51,10 @@ export class App extends Component {
   render() {
     return (
       <div className={styles.App}>
-        <h1>Todo App</h1>
+        <div className={styles.App__Header}>
+          <h1>Todo App -  </h1>
+          <span>React & Redux & Firebase</span>
+        </div>
         <form className={styles.CreateTask} noValidate autoComplete="off">
           <div className={styles.CreateTask__TextField}>
             <TextField
@@ -69,9 +72,10 @@ export class App extends Component {
             Create
          </Button>
         </form>
-        {this.props.tasks && this.props.tasks.all.map((task) => {
+        {/*  {this.props.tasks && this.props.tasks.all.map((task) => {
           return <Task key={task.id} {...task} />
-        })}
+        })} */}
+        <Task key='test' id={'test'} completed={false} text={'I have to learn Scala'} />
       </div>
     );
   }

@@ -1,5 +1,15 @@
+@import 'assets/styles/_variables.scss';
+
 .App {
 	width: 100%;
+	&__Header {
+		width: 100%;
+		span {
+			display: inline-block;
+			color: $sec-text-color;
+			padding: 10px 0;
+		}
+	}
 }
 
 .CreateTask {
