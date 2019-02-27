@@ -15,7 +15,8 @@ export class App extends Component {
     this.state = {
       newTask: '',
       creating: false
-    }
+    };
+    this.date = new Date();
   }
   componentWillMount() {
     if (!this.props.user) {
@@ -24,6 +25,10 @@ export class App extends Component {
       });
     }
     this.props.initializeTasks();
+  }
+
+  componentDidUpdate() {
+    console.log('update', this.props, this.state)
   }
 
   createTask() {
@@ -48,11 +53,19 @@ export class App extends Component {
     }
   }
 
+  taskListRender() {
+    if (this.props.tasks && this.props.tasks.all) {
+      return this.props.tasks.all.map((task) =>
+        <Task key={task.id} task={task} onUpdate={(task) => this.props.updateTask(task)} onRemove={(taskId) => this.props.removeTask(taskId)} />
+      )
+    }
+  }
+
   render() {
     return (
       <div className={styles.App}>
         <div className={styles.App__Header}>
-          <h1>Todo App -  </h1>
+          <h1>Todo App </h1>
           <span>React & Redux & Firebase</span>
         </div>
         <form className={styles.CreateTask} noValidate autoComplete="off">
@@ -72,10 +85,9 @@ export class App extends Component {
             Create
          </Button>
         </form>
-        {/*  {this.props.tasks && this.props.tasks.all.map((task) => {
-          return <Task key={task.id} {...task} />
-        })} */}
-        <Task key='test' id={'test'} completed={false} text={'I have to learn Scala'} />
+        <div className={styles.App__TaskList}>
+          {this.taskListRender()}
+        </div>
       </div>
     );
   }
@@ -83,7 +95,7 @@ export class App extends Component {
 
 const mapStateToProps = (state) => ({
   ...state.user,
-  ...state.tasks
+  tasks: state.tasks
 });
 
 const mapDispatchToProps = (dispatch) => ({

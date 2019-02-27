@@ -1,4 +1,10 @@
 .Task {
-	display: block;
+	display: flex;
+	flex-flow: row nowrap;
 	width: 100%;
+	&__Text {
+		flex: 1;
+		display: flex;
+		align-items: center;
+	}
 }
