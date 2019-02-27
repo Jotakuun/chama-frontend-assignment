@@ -9,7 +9,7 @@ export class CreateTask extends Component {
 
 		this.state = {
 			text: '',
-			priority: 1
+			priority: 3
 		}
 	}
 

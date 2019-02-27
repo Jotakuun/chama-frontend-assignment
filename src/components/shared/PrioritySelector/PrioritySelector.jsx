@@ -1,6 +1,8 @@
 import React from 'react';
 import { Select, MenuItem, FormControl, Icon } from '@material-ui/core';
 
+import styles from './PrioritySelector.module.scss';
+
 import MoodBad from '@material-ui/icons/MoodBad';
 import SentimentVeryDissatisfied from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentDissatisfied from '@material-ui/icons/SentimentDissatisfied';
@@ -17,27 +19,27 @@ function PrioritySelector(props) {
 				onChange={(event) => props.onChange(event.target.value)}
 			>
 				<MenuItem value={1}>
-					<Icon>
+					<Icon color="inherit" className={styles.Priority__Level__1}>
 						<MoodBad />
 					</Icon>
 				</MenuItem>
 				<MenuItem value={2}>
-					<Icon>
+					<Icon color="inherit" className={styles.Priority__Level__2}>
 						<SentimentVeryDissatisfied />
 					</Icon>
 				</MenuItem>
 				<MenuItem value={3}>
-					<Icon>
+					<Icon color="inherit" className={styles.Priority__Level__3}>
 						<SentimentDissatisfied />
 					</Icon>
 				</MenuItem>
 				<MenuItem value={4}>
-					<Icon>
+					<Icon color="inherit" className={styles.Priority__Level__4}>
 						<SentimentSatisfied />
 					</Icon>
 				</MenuItem>
 				<MenuItem value={5}>
-					<Icon>
+					<Icon color="inherit" className={styles.Priority__Level__5}>
 						<Mood />
 					</Icon>
 				</MenuItem>
