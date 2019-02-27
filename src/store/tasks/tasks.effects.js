@@ -34,7 +34,7 @@ export function* removeTask(action) {
 		const response = yield call(FirebaseAPI.removeTask, action.payload);
 		yield put({ type: actionsTypes.REMOVE_TASK_SUCCESS, payload: { taskId: response } });
 	} catch (error) {
-		yield put({ type: actionsTypes.UPDATE_TASK_FAILURE, payload: { error } });
+		yield put({ type: actionsTypes.REMOVE_TASK_FAILURE, payload: { error } });
 
 	}
 }

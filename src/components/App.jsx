@@ -27,10 +27,6 @@ export class App extends Component {
     this.props.initializeTasks();
   }
 
-  componentDidUpdate() {
-    console.log('update', this.props, this.state)
-  }
-
   createTask() {
     const { newTask } = this.state;
     if (newTask !== '') {
@@ -54,8 +50,8 @@ export class App extends Component {
   }
 
   taskListRender() {
-    if (this.props.tasks && this.props.tasks.all) {
-      return this.props.tasks.all.map((task) =>
+    if (this.props.tasks) {
+      return this.props.tasks.map((task) =>
         <Task key={task.id} task={task} onUpdate={(task) => this.props.updateTask(task)} onRemove={(taskId) => this.props.removeTask(taskId)} />
       )
     }
@@ -95,7 +91,7 @@ export class App extends Component {
 
 const mapStateToProps = (state) => ({
   ...state.user,
-  tasks: state.tasks
+  ...state.tasks
 });
 
 const mapDispatchToProps = (dispatch) => ({

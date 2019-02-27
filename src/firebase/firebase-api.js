@@ -75,15 +75,17 @@ function getDatabaseSnapshot() {
 	})
 }
 
-function createTask(task) {
+async function createTask(task) {
 	return new Promise((resolve, reject) => {
 		if (task) {
-			const createdTask = FirebaseDB.push().set(task, (error) => {
+			const newTask = FirebaseDB.push()
+			
+			newTask.set(task, (error) => {
 				if (error) {
 					reject(error);
 				}
 			});
-			resolve(createdTask);
+			resolve({...task, id: newTask.key})
 		} else reject();
 	})
 }
@@ -91,7 +93,7 @@ function createTask(task) {
 function updateTask(task) {
 	return new Promise((resolve, reject) => {
 		if (task) {
-			FirebaseDB.ref().update({[task.id]: task});
+			FirebaseDB.update({ [task.id]: task });
 			resolve(task);
 		} else reject();
 	})
@@ -100,7 +102,7 @@ function updateTask(task) {
 function removeTask(taskId) {
 	return new Promise((resolve, reject) => {
 		if (taskId) {
-			this.database.child(taskId).remove();
+			FirebaseDB.child(taskId).remove();
 			resolve(taskId);
 		} else reject();
 	})
