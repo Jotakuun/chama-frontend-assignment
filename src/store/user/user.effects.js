@@ -6,6 +6,7 @@ import { PersistentAuth } from '../../components/Auth/persistent-auth';
 export function* login(action) {
 	try {
 		const response = yield call(FirebaseAPI.login, action.payload);
+		PersistentAuth.saveUser(response.user);
 		yield put({ type: actionsTypes.LOGIN_SUCCESS, user: response.user });
 	} catch (error) {
 		yield put({ type: actionsTypes.LOGIN_FAILURE, error });
@@ -16,6 +17,7 @@ export function* login(action) {
 export function* loginAnonymously(action) {
 	try {
 		const response = yield call(FirebaseAPI.loginAnonymously);
+		PersistentAuth.removeUserFromStorage(response.user);
 		yield put({ type: actionsTypes.LOGIN_SUCCESS, user: response.user });
 	} catch (error) {
 		yield put({ type: actionsTypes.LOGIN_FAILURE, error });
@@ -25,6 +27,7 @@ export function* loginAnonymously(action) {
 export function* signup(action) {
 	try {
 		const response = yield call(FirebaseAPI.signup, action.payload);
+		PersistentAuth.removeUserFromStorage(response.user);
 		yield put({ type: actionsTypes.SIGNUP_SUCCESS, user: response.user });
 	} catch (error) {
 		yield put({ type: actionsTypes.SIGNUP_FAILURE, error });
