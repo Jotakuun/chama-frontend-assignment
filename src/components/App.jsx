@@ -22,7 +22,7 @@ export class App extends Component {
   
   taskListRender() {
     if (this.props.tasks) {
-      return this.props.tasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((task) =>
+      return this.props.tasks.sort((a, b) => a.priority - b.priority).map((task) =>
         <Task key={task.id} task={task} onUpdate={(task) => this.props.updateTask(task)} onRemove={(taskId) => this.props.removeTask(taskId)} />
       )
     }

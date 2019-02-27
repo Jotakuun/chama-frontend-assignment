@@ -63,3 +63,8 @@ typings/
 #build
 build
 dist
+
+#firebase
+.firebase
+.firebaserc
+firebase.json
