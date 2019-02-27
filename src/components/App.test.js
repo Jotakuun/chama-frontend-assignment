@@ -4,10 +4,6 @@ import { App } from './App';
 
 
 describe('App', () => {
-  const initialState = {
-    newTask: '',
-    creating: false
-  };
   
   const mockDispatchActions = {
     initializeWithUser: () => jest.fn(),
@@ -18,13 +14,6 @@ describe('App', () => {
   };
 
   const app = shallow(<App {...mockDispatchActions} />);
-
-  describe('when initializes', () => {
-    const state = app.state();
-    it('expects an empty initial state', () => {
-      expect(state).toEqual(initialState);
-    });
-  });
 
   describe('creating a task', () => {
     describe('when user types into the `TextField`', () => {

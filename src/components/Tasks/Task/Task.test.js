@@ -30,11 +30,4 @@ describe('Task', () => {
 			expect(props).toHaveProperty('onRemove');
 		});
 	});
-
-	// describe('on check `complete` event', () => {
-		// 	describe('', () => {
-
-		// 	})
-	// });
-
 });

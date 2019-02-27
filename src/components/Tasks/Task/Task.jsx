@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import styles from "./Task.module.scss";
 import { Checkbox, IconButton } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
-
+import PrioritySelector from '../../shared/PrioritySelector/PrioritySelector';
 
 export class Task extends Component {
 	constructor(props) {
 		super(props);
 
 		this.onComplete = this.onComplete.bind(this);
+		this.onUpdatePriority = this.onUpdatePriority.bind(this);
 		this.onRemove = this.onRemove.bind(this);
 	}
 
@@ -16,6 +17,13 @@ export class Task extends Component {
 		this.props.onUpdate({
 			...this.props.task,
 			completed: event.target.checked
+		});
+	}
+
+	onUpdatePriority(value) {
+		this.props.onUpdate({
+			...this.props.task,
+			priority: value
 		});
 	}
 
@@ -38,7 +46,8 @@ export class Task extends Component {
 				<div className={styles.Task__Text}>
 					<span>{task.text}</span>
 				</div>
-				<div className={styles.Task__Date}>
+				<div className={styles.Task__Priority}>
+					<PrioritySelector value={task.priority} onChange={(value) => this.onUpdatePriority(value)} />
 				</div>
 				<div className={styles.Task__Options}>
 					<IconButton color="inherit" onClick={this.onRemove}>

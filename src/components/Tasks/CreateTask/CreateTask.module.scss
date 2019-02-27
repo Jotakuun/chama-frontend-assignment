@@ -1,0 +1,19 @@
+.CreateTask {
+	display: flex;
+	flex-flow: row nowrap;
+	width: 100%;
+	padding: 20px 0;
+
+	&__TextField {
+		display: flex;
+		flex: 1;
+	}
+	&__Priority {
+		display: flex;
+		align-items: center;
+		margin: 7px 10px;
+	}
+	&__Button {
+		padding: 10px;
+	}
+}

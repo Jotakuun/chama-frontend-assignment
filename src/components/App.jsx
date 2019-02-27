@@ -6,18 +6,10 @@ import { actions as userActions } from '../store/user/user.actions';
 import { actions as tasksActions } from '../store/tasks/tasks.actions';
 import { FirebaseAPI } from '../firebase/firebase-api';
 
-import Task from './Task/Task';
-import { TextField, Button } from '@material-ui/core';
+import Task from './Tasks/Task/Task';
+import CreateTask from './Tasks/CreateTask/CreateTask';
 
 export class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      newTask: '',
-      creating: false
-    };
-    this.date = new Date();
-  }
   componentWillMount() {
     if (!this.props.user) {
       FirebaseAPI.getCurrentUser().then((user) => {
@@ -27,31 +19,10 @@ export class App extends Component {
     this.props.initializeTasks();
   }
 
-  createTask() {
-    const { newTask } = this.state;
-    if (newTask !== '') {
-      let defaultTime = new Date();
-      defaultTime = defaultTime.setMinutes(defaultTime.getMinutes() + 30);
-      // defaultTime = defaultTime.toISOString();
-
-      this.props.createTask({
-        text: newTask,
-        dueTime: defaultTime,
-        completed: false
-      });
-    }
-  }
-
-  onKeyPress(event) {
-    if (event.key === 'Enter') {
-      this.createTask();
-      event.preventDefault();
-    }
-  }
-
+  
   taskListRender() {
     if (this.props.tasks) {
-      return this.props.tasks.map((task) =>
+      return this.props.tasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((task) =>
         <Task key={task.id} task={task} onUpdate={(task) => this.props.updateTask(task)} onRemove={(taskId) => this.props.removeTask(taskId)} />
       )
     }
@@ -64,23 +35,7 @@ export class App extends Component {
           <h1>Todo App </h1>
           <span>React & Redux & Firebase</span>
         </div>
-        <form className={styles.CreateTask} noValidate autoComplete="off">
-          <div className={styles.CreateTask__TextField}>
-            <TextField
-              id="create-task"
-              className={styles.CreateTask__TextField}
-              label="Type something..."
-              value={this.state.newTask}
-              onChange={(event) => this.setState({ newTask: event.target.value })}
-              onKeyPress={(event) => this.onKeyPress(event)}
-              variant="outlined"
-            />
-          </div>
-
-          <Button className={styles.CreateTask__Button} color="primary" variant="outlined" onClick={() => this.createTask()}>
-            Create
-         </Button>
-        </form>
+        <CreateTask onCreate={(task) => this.props.createTask(task)}/>
         <div className={styles.App__TaskList}>
           {this.taskListRender()}
         </div>
