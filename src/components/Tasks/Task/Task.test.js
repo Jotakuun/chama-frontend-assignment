@@ -8,6 +8,7 @@ describe('Task', () => {
 		task: {
 			id: 'abc123def45g67',
 			text: `Order a pizza for dinner`,
+			priority: 3,
 			dueTime: new Date(),
 			completed: false,
 		},
@@ -19,11 +20,12 @@ describe('Task', () => {
 
 	describe('when initializes', () => {
 		it('receives expected props', () => {
-			const props = task.instance().props();
+			const props = task.props();
 			expect(props).toHaveProperty('task');
 			expect(props.task).toHaveProperty('id');
 			expect(props.task).toHaveProperty('text');
 			expect(props.task).toHaveProperty('dueTime');
+			expect(props.task).toHaveProperty('priority');
 			expect(props.task).toHaveProperty('completed');
 
 			expect(props).toHaveProperty('onUpdate');
@@ -31,3 +33,4 @@ describe('Task', () => {
 		});
 	});
 });
+

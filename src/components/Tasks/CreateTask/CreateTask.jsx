@@ -60,7 +60,7 @@ export class CreateTask extends Component {
 					</div>
 
 					<div className={styles.CreateTask__Button} >
-					<Button fullWidth color="primary" onClick={() => this.createTask()}>
+					<Button id="submit-button" fullWidth color="primary" onClick={() => this.createTask()}>
 						Create
         			</Button>
 					</div>
