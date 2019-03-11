@@ -57,11 +57,11 @@ describe('CreateTask', () => {
 				submitButton.simulate('click');
 			});
 
-			it('expect `props.onCreate()` to be called', () => {
+			it('expect onCreate() to be called', () => {
 				expect(mockProps.onCreate).toHaveBeenCalled();
 			});
 
-			it('expect `props.onCreate()` callback to have the typed value', () => {
+			it('expect onCreate() to include the updated `text` value', () => {
 				const callback = mockProps.onCreate.mock.calls[0][0];
 				expect(callback).toHaveProperty('text');
 				expect(callback.text).toEqual(text);

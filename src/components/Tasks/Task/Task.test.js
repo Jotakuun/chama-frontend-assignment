@@ -16,11 +16,11 @@ describe('Task', () => {
 		onRemove: (taskId) => jest.fn(taskId)
 	}
 
-	const task = mount(<Task {...mockProps} />);
+	const component = mount(<Task {...mockProps} />);
 
 	describe('when initializes', () => {
 		it('receives expected props', () => {
-			const props = task.props();
+			const props = component.props();
 			expect(props).toHaveProperty('task');
 			expect(props.task).toHaveProperty('id');
 			expect(props.task).toHaveProperty('text');
@@ -31,6 +31,36 @@ describe('Task', () => {
 			expect(props).toHaveProperty('onUpdate');
 			expect(props).toHaveProperty('onRemove');
 		});
+
+		describe('expects to render', () => {
+			it('a Checkbox component', () => {
+				component.find('Checkbox');
+			});
+			it('a PrioritySelector component', () => {
+				component.find('PrioritySelector');
+			});
+			it('a DeleteIcon component', () => {
+				component.find('DeleteIcon');
+			});
+		});
 	});
+
+	describe('when user clicks on the checkbox', () => {
+		const checkbox = component.find('Checkbox');
+		beforeEach(() => {
+			checkbox.simulate('click');
+		});
+
+		describe('expect onUpdate() output', () => {
+			it('to be called', () => {
+
+			});
+
+			it('to include the task and the updated `complete` value', () => {
+
+			});
+	
+		});
+	})
 });
 
