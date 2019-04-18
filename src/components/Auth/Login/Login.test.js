@@ -33,7 +33,7 @@ describe('Login', () => {
 		let inputElement;
 		beforeEach(() => {
 			inputElement = login.find('#login-email');
-		})
+		});
 
 		it('the component state should update the email value', () => {
 			const email = 'test@gmail.com';
